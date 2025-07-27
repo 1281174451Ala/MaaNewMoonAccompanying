@@ -8,10 +8,11 @@
     "自动战斗_开始": {
         "recognition": "DirectHit",
         "action": "DoNothing",
+        "post_delay": 1000,
         "__yamaape": {
             "position": {
-                "x": 453,
-                "y": 476
+                "x": 269,
+                "y": 441
             }
         },
         "next": [
@@ -25,15 +26,17 @@
         "recognition": "OCR",
         "action": "DoNothing",
         "expected": [
-            "瞬时调度"
+            "瞬时调度",
+            "快速充能"
         ],
         "__yamaape": {
             "position": {
-                "x": 713,
-                "y": 476
+                "x": 536,
+                "y": 471
             }
         },
         "next": [
+            "自动战斗_检查调度冷却",
             "自动战斗_开大",
             "自动战斗_等待进入图像",
             "自动战斗_等待进入文字"
@@ -48,8 +51,8 @@
         "pre_delay": 800,
         "__yamaape": {
             "position": {
-                "x": 850,
-                "y": 282
+                "x": 910,
+                "y": 286
             }
         },
         "next": [
@@ -66,8 +69,8 @@
         ],
         "__yamaape": {
             "position": {
-                "x": 856,
-                "y": 93
+                "x": 928,
+                "y": 86
             }
         },
         "next": [
@@ -84,10 +87,35 @@
         "focus": "> 战斗结束",
         "__yamaape": {
             "position": {
-                "x": 711,
-                "y": 649
+                "x": 527,
+                "y": 614
             }
         }
+    },
+    "自动战斗_检查调度冷却": {
+        "recognition": "TemplateMatch",
+        "action": "Click",
+        "template": [
+            "battle/schedule_ready.png"
+        ],
+        "threshold": [
+            0.6
+        ],
+        "roi": [
+            1177,
+            419,
+            83,
+            77
+        ],
+        "__yamaape": {
+            "position": {
+                "x": 754,
+                "y": 931
+            }
+        },
+        "next": [
+            "自动战斗_快速充能"
+        ]
     },
     "自动战斗_开大": {
         "recognition": "TemplateMatch",
@@ -110,8 +138,8 @@
         ],
         "__yamaape": {
             "position": {
-                "x": 973,
-                "y": 476
+                "x": 931,
+                "y": 528
             }
         },
         "next": [
@@ -125,12 +153,28 @@
         "post_delay": 1250,
         "__yamaape": {
             "position": {
-                "x": 1543,
-                "y": 311
+                "x": 1641,
+                "y": 309
             }
         },
         "next": [
             "自动战斗_开始"
+        ]
+    },
+    "自动战斗_快速充能": {
+        "recognition": "OCR",
+        "action": "Click",
+        "expected": [
+            "快速充能"
+        ],
+        "__yamaape": {
+            "position": {
+                "x": 1058,
+                "y": 961
+            }
+        },
+        "next": [
+            "自动战斗_选中充能"
         ]
     },
     "自动战斗_确定开大": {
@@ -154,8 +198,8 @@
         ],
         "__yamaape": {
             "position": {
-                "x": 1233,
-                "y": 476
+                "x": 1246,
+                "y": 432
             }
         },
         "next": [
@@ -171,12 +215,34 @@
         "inverse": true,
         "__yamaape": {
             "position": {
-                "x": 1235,
-                "y": 775
+                "x": 1249,
+                "y": 699
             }
         },
         "next": [
             "自动战斗_再次检测"
+        ]
+    },
+    "自动战斗_选中充能": {
+        "recognition": "OCR",
+        "action": "Click",
+        "expected": [
+            "快速充能"
+        ],
+        "roi": [
+            1048,
+            396,
+            122,
+            137
+        ],
+        "__yamaape": {
+            "position": {
+                "x": 1392,
+                "y": 938.3473325766174
+            }
+        },
+        "next": [
+            "自动战斗_开大"
         ]
     }
 }
