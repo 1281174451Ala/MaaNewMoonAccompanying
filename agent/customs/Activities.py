@@ -4,7 +4,368 @@ from maa.context import Context
 
 import time
 
-from .utils import parse_query_args, Prompt, RecoHelper, Tasker
+from .MatrixScheduling import StepMatrixManager
+from .utils import parse_query_args, Prompt, RecoHelperOld, RecoHelper, Tasker
+
+
+# 码头八点半
+pier_level = "第1关"
+
+pier_schedule = {
+    "第1关": [
+        (4, 6),
+        (4, 7),
+        (5, 2),
+        (6, 6),
+        (7, 3),
+        (7, 7),
+        (5, 3),
+        (4, 5),
+        (3, 5),
+    ],
+    "第2关": [
+        (1, 3),
+        (3, 9),
+        (3, 3),
+        (8, 3),
+        (2, 5),
+        (5, 7),
+        (6, 7),
+        (7, 5),
+        (6, 2),
+    ],
+    "第3关": [
+        (1, 6),
+        (5, 7),
+        (3, 1),
+        (2, 3),
+        (6, 6),
+        (5, 6),
+        (4, 5),
+        (6, 4),
+        (7, 3),
+        (6, 1),
+        (5, 2, 2),
+    ],
+    "第4关": [
+        (1, 6),
+        (2, 3),
+        (7, 2),
+        (3, 2),
+        (4, 3),
+        (7, 7),
+        (6, 2),
+        (5, 6),
+        (6, 5),
+        (2, 8),
+    ],
+    "第5关": [
+        (2, 9),
+        (6, 1),
+        (7, 5),
+        (7, 7),
+        (1, 8),
+        (4, 7),
+        (3, 5),
+        (2, 4),
+        (3, 2),
+        (3, 6),
+        (5, 4),
+        (4, 3),
+    ],
+    "第6关": [
+        (1, 1),
+        (4, 6),
+        (4, 9),
+        (7, 5),
+        (3, 1),
+        (2, 3),
+        (1, 4),
+        (8, 7),
+        (7, 8),
+        (3, 2),
+        (6, 1),
+        (5, 2),
+        (8, 4),
+        (4, 3),
+    ],
+    "第7关": [
+        (4, 8),
+        (2, 7),
+        (3, 1),
+        (3, 8),
+        (1, 5),
+        (4, 6),
+        (3, 2),
+        (5, 7),
+        (8, 2),
+        (7, 4),
+        (2, 4),
+        (7, 3),
+        (1, 3),
+        (6, 3),
+    ],
+    "第8关": [
+        (1, 9),
+        (2, 4),
+        (3, 2),
+        (5, 5),
+        (3, 7),
+        (8, 1),
+        (7, 8),
+        (8, 5),
+        (7, 2),
+        (4, 1),
+        (6, 6),
+        (5, 7),
+        (1, 7),
+        (6, 4),
+    ],
+    "第9关": [
+        (1, 2),
+        (1, 6),
+        (2, 3),
+        (2, 1),
+        (4, 1),
+        (2, 5),
+        (4, 6),
+        (6, 7),
+        (5, 1),
+        (5, 2),
+        (5, 5),
+        (7, 5),
+        (8, 4),
+        (7, 4),
+    ],
+    "第10关": [
+        (1, 1),
+        (3, 7),
+        (4, 8),
+        (8, 5),
+        (2, 1),
+        (7, 7),
+        (7, 4),
+        (5, 6),
+        (2, 2),
+        (4, 5),
+        (8, 1),
+        (3, 2),
+        (7, 1),
+        (6, 3),
+        (7, 2),
+    ],
+    "第11关": [
+        (2, 5),
+        (5, 6),
+        (8, 3),
+        (6, 4),
+        (2, 9),
+        (8, 8),
+        (7, 6),
+        (3, 8),
+        (4, 6),
+        (4, 4),
+        (1, 4),
+        (2, 3),
+        (3, 4),
+        (3, 2),
+    ],
+    "第12关": [
+        (1, 4),
+        (1, 6),
+        (5, 7),
+        (8, 1),
+        (2, 3),
+        (3, 3),
+        (5, 6),
+        (7, 2),
+        (3, 1),
+        (8, 5),
+        (5, 4),
+        (6, 3),
+        (4, 3),
+    ],
+    "第13关": [
+        (8, 7),
+        (1, 4),
+        (2, 5),
+        (4, 1),
+        (1, 1),
+        (2, 4),
+        (4, 5),
+        (8, 4),
+        (2, 2),
+        (5, 1),
+        (7, 7),
+        (8, 3),
+        (6, 3),
+        (2, 6),
+        (7, 2),
+    ],
+    "第14关": [
+        (5, 6),
+        (2, 2),
+        (3, 1),
+        (3, 5),
+        (1, 4),
+        (8, 7),
+        (4, 2),
+        (7, 7),
+        (5, 3),
+        (6, 4),
+        (6, 3, 2),
+        (7, 3),
+        (7, 2),
+        (7, 4),
+    ],
+    "第15关": [
+        (1, 2),
+        (1, 6),
+        (3, 1),
+        (5, 1),
+        (2, 4),
+        (6, 1),
+        (8, 3),
+        (8, 2),
+        (8, 9),
+        (3, 6),
+        (3, 5),
+        (4, 5),
+        (6, 7),
+        (5, 4),
+        (5, 6),
+        (6, 5),
+        (6, 5),
+    ],
+    "第16关": [
+        (5, 9),
+        (2, 1),
+        (1, 5),
+        (6, 7),
+        (5, 4),
+        (4, 1),
+        (7, 1),
+        (4, 7),
+        (6, 3),
+        (8, 4),
+        (8, 3),
+        (3, 2),
+        (3, 4),
+        (4, 6),
+        (5, 2),
+        (3, 2, 2),
+        (2, 3),
+    ],
+}
+
+
+# 设置码头关卡
+@AgentServer.custom_action("set_pier_level")
+class SetPierLevel(CustomAction):
+    def run(
+        self, context: Context, argv: CustomAction.RunArg
+    ) -> CustomAction.RunResult | bool:
+        global pier_level
+        try:
+            result = (
+                RecoHelper(context).recognize("码头_关卡识别").reco_detail.best_result
+            )
+            if not result:
+                return Prompt.error("关卡识别失败", use_defult_postfix=False)
+            pier_level = result.text
+            Prompt.log(f"当前关卡：{pier_level}")
+            return True
+        except Exception as e:
+            return Prompt.error("设置关卡", e)
+
+
+# 自动驾驶
+@AgentServer.custom_action("auto_pier")
+class AutoPier(CustomAction):
+    def run(
+        self, context: Context, argv: CustomAction.RunArg
+    ) -> CustomAction.RunResult | bool:
+        global pier_level, pier_schedule
+        try:
+            # 初始化棋盘
+            schedule = pier_schedule.get(pier_level)
+            if not schedule:
+                return Prompt.error("MNMA仅可完成前16关！", use_defult_postfix=False)
+            matrix = StepMatrixManager.get()
+
+            # 发船
+            sleep_count = 0
+            for coordinate in schedule:
+                if Tasker.is_stopping(context):
+                    return False
+
+                if type(coordinate[0]) == int:
+                    delivery_type = "matrix"
+                elif type(coordinate[0]) == str:
+                    delivery_type = "belt"
+
+                # 等待上船
+                if sleep_count >= 4:
+                    Prompt.log("你上来啊！")
+                    time.sleep(2)
+                    sleep_count = 1
+                else:
+                    sleep_count += 1
+
+                # 延时等待
+                if delivery_type == "matrix" and len(coordinate) > 2:
+                    Prompt.log("你上来啊！")
+                    time.sleep(coordinate[2])
+
+                # 发船
+                Prompt.log(f"发船：{coordinate}")
+                if delivery_type == "matrix":
+                    matrix.click(context, coordinate[0], coordinate[1])
+                elif delivery_type == "belt":
+                    if not belt_delivery(context, coordinate):
+                        return Prompt.error("传送带发船失败")
+
+                time.sleep(1)
+
+            Prompt.log("发船结束")
+            return True
+        except Exception as e:
+            return Prompt.error("自动驾驶", e)
+
+
+# 传送带发船
+def belt_delivery(context: Context, coordinate: tuple[str, int, int]):
+    Prompt.log("等待传送带轮换")
+    for i in range(20):
+        # 左侧
+        template = f"activity/pier/{coordinate[0]}.png"
+        left_expand = coordinate[1] * 53
+        reco_helper = RecoHelper(context).recognize(
+            "码头_传送带左侧识别",
+            {
+                "template": template,
+                "roi": [381 - left_expand, 521, 115 + left_expand, 157],
+            },
+        )
+        if reco_helper.hit():
+            reco_helper.click(context, offset=(-6, 0))
+            return True
+
+        # 右侧
+        right_expand = coordinate[2] * 53
+        reco_helper = RecoHelper(context).recognize(
+            "码头_传送带右侧识别",
+            {
+                "template": template,
+                "roi": [978 - right_expand, 522, 75 + right_expand, 158],
+            },
+        )
+        if reco_helper.hit():
+            reco_helper.click(context, offset=(-6, 0))
+            return True
+
+        time.sleep(1)
+    return False
 
 
 # 自动炒菜
@@ -23,7 +384,7 @@ class InitCook(CustomAction):
     ) -> CustomAction.RunResult | bool:
         global type_num, current_type
         try:
-            reco_helper = RecoHelper(context)
+            reco_helper = RecoHelperOld(context)
             reco_helper.recognize("自动炒菜_检测品类数量")
             type_num = 3
             if reco_helper.hit():
@@ -53,7 +414,7 @@ class AutoCook(CustomAction):
         global type_num, current_type, en_food_types, zh_food_types
         try:
             # 识别采购单
-            reco_helper = RecoHelper(context)
+            reco_helper = RecoHelperOld(context)
             reco_helper.recognize("自动炒菜_识别采购单")
             if reco_helper.hit():
                 print("> 尝试使用采购单")
@@ -145,13 +506,13 @@ class AutoCook(CustomAction):
                         if not reco:
                             break
                         results = reco.all_results
-                        results = RecoHelper.filter_reco(results, 0.91)
+                        results = RecoHelperOld.filter_reco(results, 0.91)
                         if len(results) < 2:
                             break
 
                         # 合成
                         print(f"> oi，拼好饭！({zh_name}{i}-{j+1})")
-                        results = RecoHelper.sort_reco(results)
+                        results = RecoHelperOld.sort_reco(results)
                         target_1 = reco_helper.get_reco_center(results[0])
                         target_2 = reco_helper.get_reco_center(results[1])
                         Tasker.get_controller(context).post_swipe(
@@ -177,7 +538,9 @@ class AutoCook(CustomAction):
                     reco_helper = reco_dish(context, en_name, i, j)
                     if not reco_helper.hit():
                         continue
-                    results = RecoHelper.filter_reco(reco_helper.reco.all_results, 0.91)
+                    results = RecoHelperOld.filter_reco(
+                        reco_helper.reco.all_results, 0.91
+                    )
                     if len(results) > 0:
                         print(f"> 回收过剩{zh_name}：{i}-{j}")
                         recycle_food(context, results)
@@ -201,7 +564,7 @@ def change_dish():
 def reco_dish(context: Context, en_name, i, j):
     dish_template = f"activity/{en_name}/{i}{j}.png"
     checked_dish_template = f"activity/{en_name}/{i}{j}c.png"
-    reco_helper = RecoHelper(context)
+    reco_helper = RecoHelperOld(context)
     reco_helper.recognize(
         "自动炒菜_识别菜品",
         {"template": [dish_template, checked_dish_template]},
@@ -212,7 +575,7 @@ def reco_dish(context: Context, en_name, i, j):
 # 识别需求
 def reco_demand(context: Context, en_name, i, j):
     dish_template = f"activity/{en_name}/{i}{j}d.png"
-    reco_helper = RecoHelper(context)
+    reco_helper = RecoHelperOld(context)
     reco_helper.recognize(
         "自动炒菜_识别需求",
         {"template": dish_template},
@@ -227,7 +590,7 @@ def serve_dish(context: Context):
             return True
 
         # 识别是否可提交
-        reco_helper = RecoHelper(context)
+        reco_helper = RecoHelperOld(context)
         reco_helper.recognize("自动炒菜_提交菜品")
         if reco_helper.reco is None:
             break
@@ -239,7 +602,7 @@ def serve_dish(context: Context):
         time.sleep(2)
 
         # 检测是否完成
-        reco_helper = RecoHelper(context)
+        reco_helper = RecoHelperOld(context)
         reco_helper.recognize("自动炒菜_挑战完成")
         if reco_helper.reco is not None:
             return True
@@ -251,7 +614,7 @@ def serve_dish(context: Context):
 def recycle_food(context: Context, results: list):
     context.run_task("自动炒菜_半盖")
     for res in results:
-        target = RecoHelper.get_reco_center(res)
+        target = RecoHelperOld.get_reco_center(res)
         Tasker.get_controller(context).post_click(target[0], target[1]).wait()
         time.sleep(0.2)
         context.run_task("自动炒菜_回收")
@@ -260,7 +623,7 @@ def recycle_food(context: Context, results: list):
 # 检查结束
 def is_cook_end(context: Context):
     global en_food_types
-    reco_helper = RecoHelper(context)
+    reco_helper = RecoHelperOld(context)
     reco_helper.recognize("自动炒菜_材料数量不足")
     if not reco_helper.hit():
         return False
@@ -272,12 +635,12 @@ def is_cook_end(context: Context):
         for i in range(1, 3):
             for j in range(1, 6):
                 templates.append(f"activity/{food_type}/{i}{j}.png")
-    reco_helper = RecoHelper(context)
+    reco_helper = RecoHelperOld(context)
     reco_helper.recognize(
         "自动炒菜_识别菜品", {"template": templates, "roi": [292, 278, 917, 340]}
     )
     results = reco_helper.reco.all_results
-    results = RecoHelper.filter_reco(results, 0.91)
+    results = RecoHelperOld.filter_reco(results, 0.91)
     if len(results) < 3:
         return True
 

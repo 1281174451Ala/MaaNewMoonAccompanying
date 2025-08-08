@@ -2,7 +2,7 @@ from maa.agent.agent_server import AgentServer
 from maa.custom_action import CustomAction
 from maa.context import Context
 
-from .utils import parse_query_args, Prompt
+from .utils import parse_query_args, Prompt, Tasker
 
 
 class StepMatrix:
@@ -10,11 +10,15 @@ class StepMatrix:
         self.origin = origin
         self.step_size = step_size
 
-    def get_point(self, index: tuple) -> tuple:
+    def get_point(self, row: int = 1, col: int = 1) -> tuple:
         return (
-            self.origin[0] + self.step_size[0] * (index[0] - 1),
-            self.origin[1] + self.step_size[1] * (index[1] - 1),
+            self.origin[0] + self.step_size[0] * (col - 1),
+            self.origin[1] + self.step_size[1] * (row - 1),
         )
+
+    def click(self, context: Context, row: int = 1, col: int = 1) -> bool:
+        target = self.get_point(row, col)
+        Tasker.get_controller(context).post_click(*target).wait()
 
 
 class StepMatrixManager:
@@ -26,7 +30,7 @@ class StepMatrixManager:
         return cls.step_matrixes[key]
 
     @classmethod
-    def get(cls, key="default"):
+    def get(cls, key="default") -> StepMatrix:
         return cls.step_matrixes[key]
 
 
