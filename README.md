@@ -16,6 +16,7 @@
   <br/>
   <a href="https://github.com/kqcoxn/MaaNewMoonAccompanying/commits/main/" target="_blank"><img alt="committs" src="https://img.shields.io/github/commit-activity/m/kqcoxn/MaaNewMoonAccompanying?color=%23ff69b4"></a>
   <a href="https://github.com/kqcoxn/MaaNewMoonAccompanying/stargazers" target="_blank"><img alt="stars" src="https://img.shields.io/github/stars/kqcoxn/MaaNewMoonAccompanying?style=social"></a>
+  <a href="https://github.com/kqcoxn/MaaNewMoonAccompanying/releases" target="_blank"><img alt="stars" src="https://img.shields.io/github/downloads/kqcoxn/MaaNewMoonAccompanying/total?style=social"></a>
   <a href="http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=VMC132QhbMDLi5U62MlDRvtCMj9WOXRr&authKey=yJNKO4sQ%2BBFHpBCLSSEvVOAyz%2FPjknNSl70W3ugg2%2BpELnKmEiHamj1emJMWcLwQ&noverify=0&group_code=993245868" target="_blank"><img alt="QQ交流群" src="https://img.shields.io/badge/QGroup-993245868-0e80c1?logo=qq&logoColor=white"></a>
 </p>
 
@@ -25,15 +26,24 @@
 
 ### 活动功能
 
-> 当前活动：错航成旅（2025.7.24 - 2025.8.21）
+> 当前活动：雨中徐行（2025.8.21 - 2025.9.18）
+
+- [x] 「雨中徐行」领取每日痕迹
+- [x] 「遗迹寻获」自动挖掘
+
+<details>
+<summary>往期活动</summary>
+
+#### 错航成旅
+
+> 2025.7.24 - 2025.8.21
 
 - [x] 「错航成旅」领取每日弹壳
 - [x] 「缤纷纪念卡」领取每日票据
 - [x] 「血橙与餐厅」自动炒菜机
 - [x] 「码头八点半」自动驾驶（1-1 至 1-10）
-
-<details>
-<summary>往期活动</summary>
+- [x] 「列车长的见面礼」领取体力
+- [x] 「今日南廷」获取奖励
 
 #### 乐园不妙夜
 
@@ -133,7 +143,7 @@
 
 如果您在使用过程中遇到了问题、有更好的想法、希望参与开发，或是单纯想要聊天吹水，欢迎加入 MNMA 交流群！
 
-## Mirror 酱支持
+## \*Mirror 酱支持
 
 在 [Mirrorc 官方](https://mirrorchyan.com/zh/projects?source=mnma-github-code) 的帮助下， MNMA 同样也接入了 Mirror 酱 的国内高速下载与更新服务，详情请见[【Bilibili】震惊！MAA 开启收费功能？！](https://www.bilibili.com/video/BV1cZFreLEja/)
 

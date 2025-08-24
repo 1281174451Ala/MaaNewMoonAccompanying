@@ -1,5 +1,13 @@
 {
   "devDependencies": {
     "prettier-plugin-multiline-arrays": "^3.0.6"
+  },
+  "scripts": {
+    "tool": "python ./dev/openMFATools.py",
+    "agent": "python ./agent/dev_main.py",
+    "debug": "python -m MaaDebugger",
+    "check-json": "python ./dev/install.py",
+    "dev": "python ./dev/build.py",
+    "release": "git tag -a v2.2.2 -m \"release v2.2.2\" && git push origin v2.2.2"
   }
 }
