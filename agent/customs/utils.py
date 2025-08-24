@@ -255,6 +255,25 @@ class RecoHelper:
         for res in results:
             text += res.text
         return text
+    
+    # 识别结果 并返回CustomRecognition.AnalyzeResult
+    def recognizeResult(
+        self, node: str = "识别", override_key_value: dict = {}, refresh_image=False
+    ):
+        self.recognize(node, override_key_value, refresh_image)
+        if self.hit():
+                best=self.reco_detail.best_result
+                return (
+                        CustomRecognition.AnalyzeResult(
+                            box=best.box,
+                            detail=best.text,
+                        )
+                    )
+        else:
+                return CustomRecognition.AnalyzeResult(
+                            box=None,
+                            detail="无目标",
+                        )
 
     # 计算识别结果中心坐标
     @staticmethod
@@ -289,6 +308,8 @@ class Judge:
         return_analyze_result=False,
     ) -> CustomRecognition.AnalyzeResult | bool:
         reco_detail = context.run_recognition(carrier_node, analyze_arg.image)
+        if reco_detail is None:
+            return CustomRecognition.AnalyzeResult(box=None, detail="无目标")
         for res in reco_detail.all_results:
             scores = res.text.split(split_key)
             if len(scores) == 2:

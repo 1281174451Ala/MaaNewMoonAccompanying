@@ -1,0 +1,195 @@
+{
+  "__yamaape_config_活动关卡": {
+    "filename": "活动关卡",
+    "version": "v0.3.4",
+    "export": "",
+    "prefix": "活动关卡"
+  },
+  "活动关卡_进入关卡": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "开始行动"
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 867,
+        "y": 261
+      }
+    },
+    "next": [
+      "活动关卡_选择编队"
+    ],
+    "on_error": [
+      "活动关卡_结束编队"
+    ]
+  },
+  "活动关卡_选择编队": {
+    "recognition": "DirectHit",
+    "action": "Custom",
+    "custom_action": "run_set_squad",
+    "custom_action_param": "e=第六行动队",
+    "__yamaape": {
+      "position": {
+        "x": 1252,
+        "y": 62
+      }
+    },
+    "next": [
+      "活动关卡_结束编队"
+    ]
+  },
+  "活动关卡_结束编队": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "__yamaape": {
+      "position": {
+        "x": 1472,
+        "y": 261
+      }
+    },
+    "next": [
+      "活动关卡_行动开始"
+    ]
+  },
+  "活动关卡_行动开始": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "行动开始"
+    ],
+    "rate_limit": 5000,
+    "timeout": 1200000,
+    "__yamaape": {
+      "position": {
+        "x": 1855,
+        "y": 261
+      }
+    },
+    "next": [
+      "活动关卡_作战结束",
+      "活动关卡_作战失败"
+    ],
+    "interrupt": [
+      "活动关卡_检查战斗倍速",
+      "活动关卡_自动战斗"
+    ]
+  },
+  "活动关卡_作战结束": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "确定"
+    ],
+    "roi": [
+      1029,
+      612,
+      204,
+      88
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 2164,
+        "y": -227
+      }
+    },
+    "next": [
+      "活动关卡_检查关卡"
+    ]
+  },
+  "活动关卡_作战失败": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "结束行动"
+    ],
+    "focus": "> 行动失败，该提练度了",
+    "post_delay": 3000,
+    "__yamaape": {
+      "position": {
+        "x": 2164,
+        "y": -27.333333333333343
+      }
+    },
+    "next": [
+      "活动关卡_退出战斗"
+    ]
+  },
+  "活动关卡_检查战斗倍速": {
+    "recognition": "Custom",
+    "action": "Custom",
+    "custom_recognition": "should_set_battle_speed",
+    "custom_action": "run_set_battle_speed",
+    "__yamaape": {
+      "position": {
+        "x": 2164,
+        "y": 172.33333333333331
+      }
+    }
+  },
+  "活动关卡_自动战斗": {
+    "recognition": "Custom",
+    "action": "Custom",
+    "custom_recognition": "should_activate_auto_battle",
+    "custom_action": "run_activate_auto_battle",
+    "__yamaape": {
+      "position": {
+        "x": 2164,
+        "y": 372
+      }
+    }
+  },
+  "活动关卡_检查关卡": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "__yamaape": {
+      "position": {
+        "x": 443,
+        "y": 173
+      }
+    },
+    "next": [
+      "活动关卡_结束",
+      "活动关卡_进入关卡"
+    ]
+  },
+  "活动关卡_退出战斗": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "确定"
+    ],
+    "roi": [
+      1029,
+      612,
+      204,
+      88
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 2454,
+        "y": -27.333333333333343
+      }
+    }
+  },
+  "活动关卡_结束": {
+    "recognition": "TemplateMatch",
+    "action": "DoNothing",
+    "focus": ">已完成当前活动关卡",
+    "template": [
+      "first_pass.png"
+    ],
+    "roi": [
+      634,
+      598,
+      92,
+      108
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 867,
+        "y": -62
+      }
+    }
+  }
+}
