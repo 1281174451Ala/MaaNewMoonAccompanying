@@ -31,8 +31,8 @@
     "custom_action_param": "e=第六行动队",
     "__yamaape": {
       "position": {
-        "x": 1252,
-        "y": 62
+        "x": 1179,
+        "y": 83
       }
     },
     "next": [
@@ -44,8 +44,8 @@
     "action": "DoNothing",
     "__yamaape": {
       "position": {
-        "x": 1472,
-        "y": 261
+        "x": 1488,
+        "y": 268
       }
     },
     "next": [
@@ -68,7 +68,8 @@
     },
     "next": [
       "活动关卡_作战结束",
-      "活动关卡_作战失败"
+      "活动关卡_作战失败",
+      "活动关卡_行动挑战难度较大"
     ],
     "interrupt": [
       "活动关卡_检查战斗倍速",
@@ -89,7 +90,7 @@
     ],
     "__yamaape": {
       "position": {
-        "x": 2164,
+        "x": 2149.723121122466,
         "y": -227
       }
     },
@@ -107,8 +108,8 @@
     "post_delay": 3000,
     "__yamaape": {
       "position": {
-        "x": 2164,
-        "y": -27.333333333333343
+        "x": 2149.723121122466,
+        "y": 48.38709577862312
       }
     },
     "next": [
@@ -122,8 +123,8 @@
     "custom_action": "run_set_battle_speed",
     "__yamaape": {
       "position": {
-        "x": 2164,
-        "y": 172.33333333333331
+        "x": 2160,
+        "y": 388
       }
     }
   },
@@ -134,8 +135,8 @@
     "custom_action": "run_activate_auto_battle",
     "__yamaape": {
       "position": {
-        "x": 2164,
-        "y": 372
+        "x": 2150,
+        "y": 875
       }
     }
   },
@@ -149,7 +150,7 @@
       }
     },
     "next": [
-      "活动关卡_结束",
+      "活动关卡_结束战斗",
       "活动关卡_进入关卡"
     ]
   },
@@ -167,17 +168,18 @@
     ],
     "__yamaape": {
       "position": {
-        "x": 2454,
-        "y": -27.333333333333343
+        "x": 2459,
+        "y": 56
       }
     }
   },
-  "活动关卡_结束": {
+  "活动关卡_结束战斗": {
     "recognition": "TemplateMatch",
     "action": "DoNothing",
     "focus": ">已完成当前活动关卡",
     "template": [
-      "first_pass.png"
+      "first_pass.png",
+      "first_pass2.png"
     ],
     "roi": [
       634,
@@ -189,6 +191,147 @@
       "position": {
         "x": 867,
         "y": -62
+      }
+    }
+  },
+  "活动关卡_普通难度": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "普通难度"
+    ],
+    "roi": [
+      16,
+      330,
+      294,
+      303
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 420,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_启动流程"
+    ]
+  },
+  "活动关卡_启动流程": {
+    "recognition": "DirectHit",
+    "action": "Custom",
+    "custom_action": "run",
+    "custom_action_param": "key=活动关卡_检查关卡",
+    "__yamaape": {
+      "position": {
+        "x": 746.4,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_困难难度"
+    ],
+    "on_error": [
+      "活动关卡_结束"
+    ]
+  },
+  "活动关卡_困难难度": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "困难难度"
+    ],
+    "roi": [
+      16,
+      330,
+      294,
+      303
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 1072.8,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_启动流程2"
+    ]
+  },
+  "活动关卡_启动流程2": {
+    "recognition": "DirectHit",
+    "action": "Custom",
+    "custom_action": "run",
+    "custom_action_param": "key=活动关卡_检查关卡",
+    "__yamaape": {
+      "position": {
+        "x": 1399.1999999999998,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_挑战难度"
+    ],
+    "on_error": [
+      "活动关卡_结束"
+    ]
+  },
+  "活动关卡_挑战难度": {
+    "recognition": "OCR",
+    "action": "Click",
+    "expected": [
+      "挑战难度"
+    ],
+    "roi": [
+      16,
+      330,
+      294,
+      303
+    ],
+    "__yamaape": {
+      "position": {
+        "x": 1725.6,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_启动流程3"
+    ]
+  },
+  "活动关卡_启动流程3": {
+    "recognition": "DirectHit",
+    "action": "Custom",
+    "custom_action": "run",
+    "custom_action_param": "key=活动关卡_检查关卡",
+    "__yamaape": {
+      "position": {
+        "x": 2052,
+        "y": -582
+      }
+    },
+    "next": [
+      "活动关卡_结束"
+    ]
+  },
+  "活动关卡_结束": {
+    "recognition": "DirectHit",
+    "action": "DoNothing",
+    "__yamaape": {
+      "position": {
+        "x": 1234,
+        "y": -283
+      }
+    }
+  },
+  "活动关卡_行动挑战难度较大": {
+    "recognition": "OCR",
+    "action": "DoNothing",
+    "expected": [
+      "行动挑战难度较大"
+    ],
+    "focus": ">关卡难度较大，建议更换配队重新运行",
+    "__yamaape": {
+      "position": {
+        "x": 2162,
+        "y": 180
       }
     }
   }
