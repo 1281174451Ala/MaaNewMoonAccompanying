@@ -1,17 +1,25 @@
 {
-  "__yamaape_config_兑换奖励": {
-    "filename": "兑换奖励",
-    "version": "v0.3.4",
-    "prefix": "兑换奖励",
-    "export": ""
+  "__mpe_config_兑换奖励": {
+    "__mpe_code": {
+      "prefix": "兑换奖励",
+      "filename": "兑换奖励",
+      "version": "v0.5.0"
+    }
   },
   "兑换奖励_选择数量": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "最多"
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "最多"
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1314,
         "y": 2056
@@ -22,12 +30,19 @@
     ]
   },
   "兑换奖励_购买": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "购买"
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "购买"
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1769,
         "y": 2061
@@ -39,12 +54,19 @@
     ]
   },
   "兑换奖励_点击以继续": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "点击以继续"
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "点击以继续"
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 2119,
         "y": 1978
@@ -55,9 +77,15 @@
     ]
   },
   "兑换奖励_结束": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 2533,
         "y": 2155
@@ -68,9 +96,15 @@
     ]
   },
   "兑换奖励_开始": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 590,
         "y": 2161
@@ -82,19 +116,26 @@
     ]
   },
   "兑换奖励_识别非空商品": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "剩余[^0]"
-    ],
-    "roi": [
-      422,
-      101,
-      830,
-      588
-    ],
-    "order_by": "Horizontal",
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "剩余[^0]"
+        ],
+        "roi": [
+          422,
+          101,
+          830,
+          588
+        ],
+        "order_by": "Horizontal"
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 938,
         "y": 1966
@@ -105,21 +146,28 @@
     ]
   },
   "兑换奖励_下滑": {
-    "recognition": "DirectHit",
-    "action": "Swipe",
-    "begin": [
-      840,
-      480,
-      1,
-      1
-    ],
-    "end": [
-      840,
-      430,
-      1,
-      1
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Swipe",
+      "param": {
+        "begin": [
+          840,
+          480,
+          1,
+          1
+        ],
+        "end": [
+          840,
+          430,
+          1,
+          1
+        ]
+      }
+    },
+    "__mpe_code": {
       "position": {
         "x": 865,
         "y": 2324
@@ -130,29 +178,43 @@
     ]
   },
   "兑换奖励_检查时间": {
-    "recognition": "DirectHit",
-    "action": "Custom",
-    "custom_action": "check_time",
-    "custom_action_param": "key=redeem",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "check_time",
+        "custom_action_param": "key=redeem"
+      }
+    },
+    "__mpe_code": {
       "position": {
         "x": 1190,
         "y": 2362
       }
     },
-    "on_error": [
-      "兑换奖励_识别非空商品"
-    ],
     "next": [
       "兑换奖励_超时完成"
+    ],
+    "on_error": [
+      "兑换奖励_识别非空商品"
     ]
   },
   "兑换奖励_初始化时间": {
-    "recognition": "DirectHit",
-    "action": "Custom",
-    "custom_action": "init_timer",
-    "custom_action_param": "key=redeem&limit=10",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Custom",
+      "param": {
+        "custom_action": "init_timer",
+        "custom_action_param": "key=redeem&limit=10"
+      }
+    },
+    "__mpe_code": {
       "position": {
         "x": 283,
         "y": 2155
@@ -163,10 +225,16 @@
     ]
   },
   "兑换奖励_超时完成": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
     "focus": ">当前页购买完成",
-    "__yamaape": {
+    "__mpe_code": {
       "position": {
         "x": 1533,
         "y": 2375
@@ -174,16 +242,23 @@
     }
   },
   "兑换奖励_购买失败": {
-    "recognition": "TemplateMatch",
-    "action": "Click",
-    "template": [
-      "buy_fault.png"
-    ],
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": [
+          "buy_fault.png"
+        ],
+        "threshold": [
+          0.8
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
     "focus": ">不足以购买当前道具",
-    "threshold": [
-      0.8
-    ],
-    "__yamaape": {
+    "__mpe_code": {
       "position": {
         "x": 2118,
         "y": 2134

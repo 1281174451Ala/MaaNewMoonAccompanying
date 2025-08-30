@@ -1,23 +1,31 @@
 {
-  "__yamaape_config_最高倍速": {
-    "filename": "最高倍速",
-    "version": "v0.3.4",
-    "prefix": "最高倍速",
-    "export": ""
+  "__mpe_config_最高倍速": {
+    "__mpe_code": {
+      "prefix": "最高倍速",
+      "filename": "最高倍速",
+      "version": "v0.5.0"
+    }
   },
   "最高倍速_检测一倍速战斗": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "1"
-    ],
-    "roi": [
-      1220,
-      90,
-      33,
-      49
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "1"
+        ],
+        "roi": [
+          1220,
+          90,
+          33,
+          49
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1048,
         "y": 905
@@ -28,18 +36,25 @@
     ]
   },
   "最高倍速_检测二倍速战斗": {
-    "recognition": "OCR",
-    "action": "Click",
-    "expected": [
-      "2"
-    ],
-    "roi": [
-      1220,
-      90,
-      33,
-      49
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "2"
+        ],
+        "roi": [
+          1220,
+          90,
+          33,
+          49
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1048,
         "y": 1256
@@ -50,9 +65,15 @@
     ]
   },
   "最高倍速_战斗倍速结束": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1430,
         "y": 1115
@@ -60,11 +81,17 @@
     }
   },
   "最高倍速_战斗倍速开始": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
-        "x": 520.6557038834952,
+        "x": 521,
         "y": 1130
       }
     },
@@ -75,11 +102,17 @@
     ]
   },
   "最高倍速_剧情倍速开始": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
-        "x": 520.6557038834952,
+        "x": 521,
         "y": 1573
       }
     },
@@ -88,20 +121,27 @@
     ]
   },
   "最高倍速_检测无自动剧情": {
-    "recognition": "TemplateMatch",
-    "action": "Click",
-    "template": [
-      "cycle_outlined.png"
-    ],
-    "roi": [
-      1013,
-      2,
-      96,
-      52
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": [
+          "cycle_outlined.png"
+        ],
+        "roi": [
+          1013,
+          2,
+          96,
+          52
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
-        "x": 820.7417779126214,
+        "x": 821,
         "y": 1573
       }
     },
@@ -110,12 +150,19 @@
     ]
   },
   "最高倍速_开启二倍剧情": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": "最高倍速_检测无自动剧情",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": "最高倍速_检测无自动剧情"
+      }
+    },
+    "__mpe_code": {
       "position": {
-        "x": 1120.8278519417477,
+        "x": 1121,
         "y": 1573
       }
     },
@@ -124,12 +171,19 @@
     ]
   },
   "最高倍速_开启四倍剧情": {
-    "recognition": "DirectHit",
-    "action": "Click",
-    "target": "最高倍速_检测无自动剧情",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "Click",
+      "param": {
+        "target": "最高倍速_检测无自动剧情"
+      }
+    },
+    "__mpe_code": {
       "position": {
-        "x": 1420.9139259708738,
+        "x": 1421,
         "y": 1573
       }
     },
@@ -138,9 +192,15 @@
     ]
   },
   "最高倍速_剧情倍速结束": {
-    "recognition": "DirectHit",
-    "action": "DoNothing",
-    "__yamaape": {
+    "recognition": {
+      "type": "DirectHit",
+      "param": {}
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 1721,
         "y": 1573
@@ -148,38 +208,52 @@
     }
   },
   "最高倍速_战斗倍速检测": {
-    "recognition": "OCR",
-    "action": "DoNothing",
-    "expected": [
-      "1",
-      "2"
-    ],
-    "roi": [
-      1220,
-      90,
-      33,
-      49
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "OCR",
+      "param": {
+        "expected": [
+          "1",
+          "2"
+        ],
+        "roi": [
+          1220,
+          90,
+          33,
+          49
+        ]
+      }
+    },
+    "action": {
+      "type": "DoNothing",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
-        "x": 520.6557038834952,
+        "x": 521,
         "y": 901
       }
     }
   },
   "最高倍速_剧情倍速检测": {
-    "recognition": "TemplateMatch",
-    "action": "Click",
-    "template": [
-      "cycle_outlined.png"
-    ],
-    "roi": [
-      1013,
-      2,
-      96,
-      52
-    ],
-    "__yamaape": {
+    "recognition": {
+      "type": "TemplateMatch",
+      "param": {
+        "template": [
+          "cycle_outlined.png"
+        ],
+        "roi": [
+          1013,
+          2,
+          96,
+          52
+        ]
+      }
+    },
+    "action": {
+      "type": "Click",
+      "param": {}
+    },
+    "__mpe_code": {
       "position": {
         "x": 531,
         "y": 1362
