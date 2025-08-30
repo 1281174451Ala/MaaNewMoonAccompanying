@@ -5,7 +5,7 @@ from maa.custom_recognition import CustomRecognition
 from maa.context import Context
 
 
-from .utils import RecoHelper, parse_query_args, Prompt, Judge
+from .utils import RecoHelper, parse_query_args, Prompt
 
 # 检测战斗倍速
 @AgentServer.custom_recognition("should_set_battle_speed")
@@ -68,3 +68,25 @@ class RunSetPlotSpeed(CustomAction):
             return True
         except Exception as e:
             return Prompt.error("最高倍速_剧情倍速开始", e)
+
+# 设置活动关卡是否使用配队
+@AgentServer.custom_action("set_activity_squad")
+class CRSetSquad(CustomAction):
+    def run(
+        self, context: Context, argv: CustomAction.RunArg
+    ) -> CustomAction.RunResult | bool:
+        try:
+            args = parse_query_args(argv)
+            squad = args.get("s", "")
+
+            if squad != "":
+                context.override_pipeline(
+                    {
+                        "活动关卡_进入关卡": {"next": "活动关卡_开始编队"},
+                    }
+                )
+                print(f"> 将使用队伍：{squad}")
+
+            return True
+        except Exception as e:
+            return Prompt.error("设定活动指定队伍", e)
